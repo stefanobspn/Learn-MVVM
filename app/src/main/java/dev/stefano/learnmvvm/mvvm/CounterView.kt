@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun CountView(myViewModel: CountViewModel = viewModel()) {
+fun CountView(myViewModel: CounterViewModel = viewModel()) {
     val data = myViewModel.state.value
 
     Column(
@@ -22,6 +22,10 @@ fun CountView(myViewModel: CountViewModel = viewModel()) {
         Text("Count : ${data.count}")
         Button(onClick = { myViewModel.addCount() }) {
             Text("Add Count")
+        }
+
+        Button(onClick = { myViewModel.resetCount() }) {
+            Text("Reset Count")
         }
     }
 }

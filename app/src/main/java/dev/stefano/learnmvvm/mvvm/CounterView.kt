@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun CountView(myViewModel: CounterViewModel = viewModel()) {
+fun CounterView(myViewModel: CounterViewModel = viewModel()) {
     val data = myViewModel.state.value
 
     Column(

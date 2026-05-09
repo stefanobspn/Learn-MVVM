@@ -8,7 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import dev.stefano.learnmvvm.mvvm.CountView
+import dev.stefano.learnmvvm.mvvm.CounterView
 import dev.stefano.learnmvvm.ui.theme.LearnMVVMTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LearnMVVMTheme {
-                CountView()
+                CounterView()
             }
         }
     }

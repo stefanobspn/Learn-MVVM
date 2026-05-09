@@ -1,3 +1,3 @@
-# Learn MVVM 
+# Level 2
 
-This is my journey learning MVVM Architecture for Android App
+This level adds model layer repository and implement a new feature: reset counter 

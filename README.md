@@ -1,3 +1,3 @@
-# Level 2
+# Level 3
 
-This level adds model layer repository and implement a new feature: reset counter 
+This level adds Hilt for Dependency Injection

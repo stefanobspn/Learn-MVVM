@@ -1,4 +1,6 @@
-package dev.stefano.learnmvvm.mvvm.data
+package dev.stefano.learnmvvm.data.repository
+
+import dev.stefano.learnmvvm.data.model.CounterModel
 
 interface CounterRepository {
     fun getCounter(): CounterModel

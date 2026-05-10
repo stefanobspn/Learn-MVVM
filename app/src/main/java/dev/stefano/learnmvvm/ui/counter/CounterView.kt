@@ -1,4 +1,4 @@
-package dev.stefano.learnmvvm.mvvm
+package dev.stefano.learnmvvm.ui.counter
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,10 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 
 @Composable
-fun CounterView(myViewModel: CounterViewModel = viewModel()) {
+fun CounterView(myViewModel: CounterViewModel = hiltViewModel()) {
     val data = myViewModel.state.value
 
     Column(

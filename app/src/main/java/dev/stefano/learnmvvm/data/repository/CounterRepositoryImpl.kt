@@ -1,4 +1,6 @@
-package dev.stefano.learnmvvm.mvvm.data
+package dev.stefano.learnmvvm.data.repository
+
+import dev.stefano.learnmvvm.data.model.CounterModel
 
 class CounterRepositoryImpl: CounterRepository {
     override fun getCounter(): CounterModel = CounterModel(count = 0)

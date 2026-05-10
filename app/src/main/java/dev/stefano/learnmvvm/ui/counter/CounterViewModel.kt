@@ -1,14 +1,16 @@
-package dev.stefano.learnmvvm.mvvm
+package dev.stefano.learnmvvm.ui.counter
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import dev.stefano.learnmvvm.mvvm.data.CounterModel
-import dev.stefano.learnmvvm.mvvm.data.CounterRepository
-import dev.stefano.learnmvvm.mvvm.data.CounterRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.stefano.learnmvvm.data.model.CounterModel
+import dev.stefano.learnmvvm.data.repository.CounterRepository
+import javax.inject.Inject
 
-class CounterViewModel(
-    private val repository: CounterRepository = CounterRepositoryImpl()
+@HiltViewModel
+class CounterViewModel @Inject constructor(
+    private val repository: CounterRepository
 ): ViewModel() {
     private val _state = mutableStateOf(repository.getCounter())
     val state: State<CounterModel> = _state

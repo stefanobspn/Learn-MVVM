@@ -1,12 +1,14 @@
 package dev.stefano.learnmvvm.ui.counter
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.stefano.learnmvvm.data.model.CounterModel
 import dev.stefano.learnmvvm.data.repository.CounterRepository
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,24 +16,24 @@ import javax.inject.Inject
 class CounterViewModel @Inject constructor(
     private val repository: CounterRepository
 ): ViewModel() {
-    private val _state = mutableStateOf(CounterModel(count = 0))
-    val state: State<CounterModel> = _state
+    val state: StateFlow<CounterModel> = repository.getCounterFlow()
+        .map { it ?: CounterModel(count = 0) }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = CounterModel(count = 0)
+        )
 
-    init {
-        viewModelScope.launch {
-            _state.value = repository.getCounter()
-        }
-    }
 
     fun addCount() {
         viewModelScope.launch {
-            _state.value = repository.incrementCounter(_state.value)
+            repository.incrementCounter(state.value)
         }
     }
 
     fun resetCount() {
         viewModelScope.launch {
-            _state.value = repository.resetCounter(_state.value)
+            repository.resetCounter(state.value)
         }
     }
 }

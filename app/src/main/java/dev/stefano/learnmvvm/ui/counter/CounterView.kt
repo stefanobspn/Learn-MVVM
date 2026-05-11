@@ -6,20 +6,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun CounterView(myViewModel: CounterViewModel = hiltViewModel()) {
-    val data = myViewModel.state.value
+    val state by myViewModel.state.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Text("Count : ${data.count}")
+        Text("Count : ${state.count}")
         Button(onClick = { myViewModel.addCount() }) {
             Text("Add Count")
         }

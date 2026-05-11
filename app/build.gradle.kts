@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
+    alias(libs.plugins.room)
 }
 
 android {
@@ -38,6 +39,11 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+
+    //noinspection WrongGradleMethod
+    room {
+        schemaDirectory("$projectDir/schemas")
     }
 }
 
